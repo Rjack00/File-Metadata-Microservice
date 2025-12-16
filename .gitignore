@@ -1,2 +1,19 @@
+# Dependencies
+node_modules/
+
+# Uploaded files (don't commit user uploads)
+uploads/
+
+# Environment variables
 .env
-node_modules 
+
+# IDE / Editor folders
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
