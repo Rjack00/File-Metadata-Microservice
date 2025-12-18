@@ -17,9 +17,12 @@
           Please Upload a File ...
         </p>
         <div class="view">
-          <h3 id="output"></h3>
+          <h4>Result:</h4>
+          <pre id="output"></pre> <!-- This shows pretty json -->
+
           <form enctype="multipart/form-data" method="POST" action="/api/fileanalyse">
             <input id="inputfield" type="file" name="upfile">
+            <br>
             <input id="button" type="submit" value="Upload">
           </form>
         </div>
@@ -27,8 +30,30 @@
       <div class="footer">
         <p>
           by 
-          <a href="http://www.freecodecamp.com">freeCodeCamp</a>
+          <a href="#">RJDevelopment</a>
         </p>
       </div>
+
+      <script>
+        const form = document.querySelector('form');
+        const output = document.getElementById('output');
+
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const formData = new FormData(form);
+
+          try {
+            const response = await fetch('/api/fileanalyse', {
+              method: 'POST',
+              body: formData
+            });
+            const data = await response.json();
+            output.textContent = JSON.stringify(data, null, 2);
+          } catch (error) {
+            output.textContent = 'Error: ' + error.message;
+          }
+        });
+      </script>
+
    </body>
 </html>
